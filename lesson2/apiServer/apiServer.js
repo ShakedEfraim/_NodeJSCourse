@@ -47,10 +47,16 @@ const server = http.createServer((request, response)=>{
     if(pathName === '/api/v1/customers' && method === 'GET'){
         response.writeHead(200, {'Content-Type': 'application/json'});
         response.end(JSON.stringify(customers));
+    } else if(pathName.includes('/api/v1/customers/') && method === 'GET') {        
+            let pathBreak = pathName.split('/');
+            let custId = pathBreak[4];
+            let id = parseInt(custId) - 1;
+            response.writeHead(200, {'Content-Type': 'application/json'});            
+            response.end(JSON.stringify(customers[id]));
     } else {
-        response.writeHead(404, {'Content-Type': 'text/plain'});
-        response.end('API endpoint not found');
-    }
+    response.writeHead(404, {'Content-Type': 'text/plain'});
+    response.end('API endpoint not found');
+    }    
 });
 
 //Start the server
