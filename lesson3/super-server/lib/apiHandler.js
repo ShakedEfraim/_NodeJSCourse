@@ -40,8 +40,9 @@ const handleApiRequest = (request, response) =>{
     const lastPart = arrUrlParts[arrUrlParts.length -1];
     const beforeLastPart = arrUrlParts[arrUrlParts.length -2];
 
-    let body = '';
+    
     let route = '';
+    let body = ''; 
     if(lastPart === 'customers' || beforeLastPart === 'customers'){
         route = beforeLastPart === 'customers' ? '--customers--x--' : '--customers--';
     }
@@ -62,7 +63,8 @@ const handleApiRequest = (request, response) =>{
                         response.end(JSON.stringify({message: `Customer ${lastPart} not found`}));
                     }    
                 break;
-            case '--customers--POST--':            
+            case '--customers--POST--':
+                               
                     request.on('data', chunk => body += chunk.toString())
                     request.on('end', () => {
                         let nextId = customers.length + 1;
