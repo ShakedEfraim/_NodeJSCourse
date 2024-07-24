@@ -16,17 +16,17 @@ app.use((req, res, next) =>{
     next();
 });
 
-app.use('/api/customers', customerRoutes);
+app.use('/api/v1customers', customerRoutes);
 
 app.get('/', (req, res) =>{
     res.send('Hello World');
 });
-app.get('/api', (req, res) =>{
+app.get('/api/v1', (req, res) =>{
     res.send({message: 'Hello World'});
 });
 
 
-app.get('/api/search', (req, res, next) =>{
+app.get('/api/v1/search', (req, res, next) =>{
     const { q } = req.query;
     for(let key in req.query){
         console.log(key, req.query[key]);
