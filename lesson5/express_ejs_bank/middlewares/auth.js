@@ -1,6 +1,9 @@
 const auth = (req, res, next) => {
-    console.log('Am I alowed?');
+    if (!req.session.user) {
+      return res.redirect('/login');
+    }
+    req.user = req.session.user;
     next();
-}
+};
 
 module.exports = auth;

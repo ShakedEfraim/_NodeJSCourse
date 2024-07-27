@@ -39,8 +39,13 @@ mongoose.connect(connectionString, {useNewUrlParser: true})
     console.log(`Mongo DB Failed to connect xxx: ${err.message}`);
 });
 
-app.use('/accounts', authMiddleware, accoutController);
+app.use('/', authController);
 app.use('/auth', authController);
+app.use('/accounts', authMiddleware, accoutController);
+
+app.get('/', (req, res) => {
+    res.render('login');
+});
 
 app.listen(port, () => {
     console.log(`Banking app listening at http://localhost:${port}`);

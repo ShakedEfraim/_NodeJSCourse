@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Transaction = require('../models/transaction');
+const User = require('../models/User');
 
 // Controler MVC
 router.get('/', (req, res) => {
@@ -51,8 +52,16 @@ router.post('/transfer', async (req, res) => {
 });
 
 router.get('/transactions', async (req, res) => {
-    const transactions = await Transaction.find();
-    res.render('transactions', { transactions: transactions });
+    if (!req.user) return res.redirect('/login');
+
+    try {        
+        const transactions = await Transaction.find();
+        res.render('transactions', { transactions: transactions });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+    }
 });
+
 
 module.exports = router;
