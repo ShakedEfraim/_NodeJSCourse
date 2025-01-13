@@ -1,0 +1,8 @@
+shakedefraim
+
+cPrr1NPNDUlADOF1
+mongo db password
+
+
+mongodb+srv://shakedefraim:cPrr1NPNDUlADOF1@cluster0.12ilpbc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
